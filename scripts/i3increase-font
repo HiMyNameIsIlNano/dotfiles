@@ -1,0 +1,16 @@
+#!/bin/sh
+
+increase=${1:-1}
+file=${2:-~/.i3/config}
+timestamp=$(date +%s)
+temp_file=${timestamp}.cpy
+
+key=$(grep -e '^font xft:\S* [1-9]*' "${file}")
+size=$(echo ${key} | grep -oE '[0-9]+')
+font=$(echo ${key} | sed 's/[0-9]//g')
+new_size=$((size+${increase}))
+new_key=${font}${new_size}
+
+sed "s/${key}/${new_key}/g" ${file} > /tmp/${temp_file}
+cp /tmp/${temp_file} ${file}
+rm /tmp/${temp_file}

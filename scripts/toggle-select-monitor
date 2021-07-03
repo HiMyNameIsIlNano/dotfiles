@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# The profiles must be saved under ~/.config/autorandr
+# Global variables
+intern=LVDS1
+extern=HDMI1
+
+function attach_monitor() {
+    local profile=$1
+
+    autorandr -l ${profile} 
+}
+
+current_profile=$(autorandr --current)
+
+if [ ${current_profile} == "external-monitor" ]; then
+    attach_monitor notebook-monitor
+elif [ ${current_profile} == "notebook-monitor" ]; then
+    if xrandr | grep "$extern connected"; then
+        attach_monitor external-monitor
+    fi
+else
+    attach_monitor notebook-monitor	
+fi
+
+notify-send -i display "Display profile" "$(autorandr --current)"
+
+sleep 2

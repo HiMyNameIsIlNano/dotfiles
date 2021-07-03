@@ -1,0 +1,81 @@
+alias ll="ls -al"
+alias v="vim"
+alias d="docker"
+alias update-all="sudo pacman -Syu"
+alias pamac-clean-cache="sudo pacman -Sc && sudo pacman -Qdt && sudo pacman -Rns $(pacman -Qtdq)"
+alias cddev="cd ~/development"
+alias reload="source ~/.bashrc"
+alias artifactory-start="cddev && ./infrastructure && ./himynameis-artifactory.start"
+alias jar-info="archive_info"
+alias pkg-server-update="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
+alias eb='vim ~/.bashrc'
+alias aa='alias'
+alias i3-cfg-edit='vim ~/.i3/config'
+alias ea='vim ~/.my_alias'
+alias citrix-open="open-citrix"
+
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.jar)       jar xvf $1   ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+#
+# # archive_info - archive extractor
+# # usage: archive_info <file>
+archive_info ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.jar)   jar tf $1   ;;
+      *)       echo "'$1' info cannot be extracted via archive_info()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+open-citrix() {
+    if [ "$#" -ne 1 ]; then
+    	echo 'Wrong number of parameters received when calling the function.'
+    	echo "FUNCNAME[0] /path/to/ica_file.ica"
+	return 
+    fi
+
+    local ica_file="$@"
+    /opt/Citrix/ICAClient/wfica ${ica_file} & >& /dev/null
+}
+
+open-in-browser() {
+    local url="$@"
+    xdg-open ${url} &    
+}
+
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
+	
