@@ -1,11 +1,11 @@
 alias ll="ls -al"
 alias v="vim"
 alias d="docker"
-alias update-all="sudo pacman -Syu"
+alias update-all="sudo yay -Syu"
 alias pamac-clean-cache="sudo pacman -Sc && sudo pacman -Qdt && sudo pacman -Rns $(pacman -Qtdq)"
-alias cddev="cd ~/development"
+alias install="sudo yay -Syu"
+alias cddev="cd ${DEV_FOLDER}"
 alias reload="source ~/.bashrc"
-alias artifactory-start="cddev && ./infrastructure && ./himynameis-artifactory.start"
 alias jar-info="archive_info"
 alias pkg-server-update="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
 alias eb='vim ~/.bashrc'
@@ -13,6 +13,8 @@ alias aa='alias'
 alias i3-cfg-edit='vim ~/.i3/config'
 alias ea='vim ~/.my_alias'
 alias citrix-open="open-citrix"
+alias dfp="dotfiles-pull"
+alias dfu="dotfiles-push"
 
 # # ex - archive extractor
 # # usage: ex <file>
@@ -70,12 +72,25 @@ open-in-browser() {
     xdg-open ${url} &    
 }
 
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
+#function _update_ps1() {
+#    PS1=$(powerline-shell $?)
+#}
+
+#if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi
+
+dotfiles-push() {
+    cddev
+    cd dotfiles
+    git add .	
+    git commit -m "Updated dotfiles on $(date +%Y-%m-%d)" 
+    git pull -r    
+    git push	
 }
 
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
-	
+dotfiles-pull() {
+    cddev
+    cd dotfiles
+    git pull -r
+}

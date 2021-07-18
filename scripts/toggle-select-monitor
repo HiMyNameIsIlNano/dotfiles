@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# The profiles must be saved under ~/.config/autorandr
+# The profiles must be saved under ~/config/.autorandr
 # Global variables
 intern=LVDS1
 extern=HDMI1

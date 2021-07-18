@@ -113,10 +113,11 @@ shopt -s expand_aliases
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
 
+export DEV_FOLDER=~/Development
 [[ -f ~/.my_alias ]] && source ~/.my_alias
 [[ -f ~/.my_secrets ]] && source ~/.my_secrets
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/user/.sdkman"
 [[ -s "/home/user/.sdkman/bin/sdkman-init.sh" ]] && source "/home/user/.sdkman/bin/sdkman-init.sh"
 
+export PATH=$PATH:~/.local/scripts
