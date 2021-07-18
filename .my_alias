@@ -86,7 +86,8 @@ dotfiles-push() {
     git add .	
     git commit -m "Updated dotfiles on $(date +%Y-%m-%d)" 
     git pull -r    
-    git push	
+    git push
+    cd - >& /dev/null
 }
 
 dotfiles-pull() {
