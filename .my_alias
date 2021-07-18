@@ -12,9 +12,12 @@ alias eb='vim ~/.bashrc'
 alias aa='alias'
 alias i3-cfg-edit='vim ~/.i3/config'
 alias ea='vim ~/.my_alias'
+alias es='vim ~/.my_secrets'
 alias citrix-open="open-citrix"
-alias dfp="dotfiles-pull"
-alias dfu="dotfiles-push"
+alias dfp="dotfiles-push"
+alias dfs="dotfiles-pull"
+alias show-keyboard-layout="sbxkb &"
+alias kblayout="show-keyboard-layout"
 
 # # ex - archive extractor
 # # usage: ex <file>

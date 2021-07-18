@@ -50,12 +50,12 @@ cd ~/Development
 
 git clone git@github.com:HiMyNameIsIlNano/dotfiles.git
 
-
 backup_file ~/.bashrc
 backup_file ~/.profile
 cd ~
 ln ~/Development/dotfiles/.bashrc .bashrc
 ln ~/Development/dotfiles/.profile .profile
+ln ~/Development/dotfiles/.my_alias .my_alias
 
 backup_file ~/.config/mimeapps.list
 cd ~/.config/

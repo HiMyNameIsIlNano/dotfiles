@@ -136,7 +136,7 @@ bindsym $mod+Right focus right
 # Screen
 bindsym $mod+l exec --no-startup-id blurlock
 bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+Shift+m exec --no-startup-id "toggle-select-monitor; pkill conky; start_conky_maia; nitrogen --restore; sbxkb;"
+bindsym $mod+Shift+m exec --no-startup-id "toggle-select-monitor; pkill conky; start_conky_maia; nitrogen --restore;"
 
 # Keyboard
 bindsym $mod+Ctrl+Shift+d exec --no-startup-id "setxkbmap -model pc104 -layout de; exec notify-send 'keyboard layout DE'"
