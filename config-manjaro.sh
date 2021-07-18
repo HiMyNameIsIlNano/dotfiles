@@ -37,13 +37,13 @@ backup_file() {
 
 sudo pacman-mirrors --fasttrack 
 sudo pacman -Syyu
-sudo pacman -Syu slack \
-	autorandr
 
-sudo yay -S icaclient \
+yay -S slack-desktop \
+	autorandr \
+	icaclient \
 	bash-pureline-git \
 
-sudo yay -R palemoon 
+yay -R palemoon 
 
 mkdir -p ~/Development
 cd ~/Development 
@@ -64,3 +64,13 @@ ln ~/Development/dotfiles/mimeapps.list .profile
 backup_file ~/.i3/config
 cd ~/.i3
 ln ~/Development/dotfiles/i3/config config
+
+mkdir -p ~/.local/scripts
+cd ~/.local/scripts
+ln -s ~/Development/dotfiles/scripts i3-scripts
+
+cd /usr/bin
+sudo ln -s ~/Devlopment/dotfiles/scripts/toggle-select-monitor toggle-select-monitor
+sudo ln -s ~/Devlopment/dotfiles/scripts/i3-resize i3-resize
+sudo ln -s ~/Devlopment/dotfiles/scripts/i3-increase-font i3-increase-font
+

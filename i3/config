@@ -95,8 +95,8 @@ bindsym $mod+n --release exec "killall dunst; dunst; exec notify-send 'restart d
 bindsym $mod+r reload
 bindsym $mod+Ctrl+r restart
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Ctrl+f exec --no-startup-id "i3increase-font"; restart; exec notify-send 'i3 font increased'
-bindsym $mod+Ctrl+d exec --no-startup-id "i3increase-font -1"; restart; exec notify-send 'i3 font decreased'
+bindsym $mod+Ctrl+f exec --no-startup-id "i3-increase-font"; restart; exec notify-send 'i3 font increased'
+bindsym $mod+Ctrl+d exec --no-startup-id "i3-increase-font -1"; restart; exec notify-send 'i3 font decreased'
 
 # i3 tiling
 bindsym $mod+Shift+Ctrl+f fullscreen toggle
@@ -112,10 +112,10 @@ bindsym $mod+Shift+t layout toggle split
 bindsym $mod+x kill
 
 # Resize container
-bindsym $mod+Shift+d exec --no-startup-id i3resize down
-bindsym $mod+Shift+l exec --no-startup-id i3resize left
-bindsym $mod+Shift+r exec --no-startup-id i3resize right
-bindsym $mod+Shift+u exec --no-startup-id i3resize up
+bindsym $mod+Shift+d exec --no-startup-id i3-resize down
+bindsym $mod+Shift+l exec --no-startup-id i3-resize left
+bindsym $mod+Shift+r exec --no-startup-id i3-resize right
+bindsym $mod+Shift+u exec --no-startup-id i3-resize up
 
 # Move container
 bindsym $mod+Shift+Down move down
