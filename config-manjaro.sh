@@ -38,10 +38,14 @@ backup_file() {
 sudo pacman-mirrors --fasttrack 
 sudo pacman -Syyu
 
+curl -s "https://get.sdkman.io" | bash
+
 yay -S slack-desktop \
 	autorandr \
 	icaclient \
 	bash-pureline-git \
+	spotify \
+	intellij-idea-ultimate-edition
 
 yay -R palemoon 
 
