@@ -49,6 +49,9 @@ yay -Syu zip \
 
 curl -s "https://get.sdkman.io" | bash
 
+ln -s /usr/share/pureline pureline
+cp /usr/share/pureline/configs/powerline_full_256col.conf ~/.pureline.conf
+
 yay -R palemoon 
 
 mkdir -p ~/Development
