@@ -114,6 +114,7 @@ shopt -s expand_aliases
 shopt -s histappend
 
 export DEV_FOLDER=~/Development
+export JAVA_HOME=~/.sdkman/candidates/java/11.0.11-open/bin
 [[ -f ~/.my_alias ]] && source ~/.my_alias
 [[ -f ~/.my_secrets ]] && source ~/.my_secrets
 

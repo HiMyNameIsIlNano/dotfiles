@@ -45,6 +45,8 @@ yay -Syu zip \
 	icaclient \
 	bash-pureline-git \
 	spotify \
+	libsecret \
+	seahorse \
 	intellij-idea-ultimate-edition
 
 curl -s "https://get.sdkman.io" | bash
@@ -61,10 +63,13 @@ git clone git@github.com:HiMyNameIsIlNano/dotfiles.git
 
 backup_file ~/.bashrc
 backup_file ~/.profile
+backup_file ~/.my_alias
+backup_file ~/.bash_profile
 cd ~
 ln ~/Development/dotfiles/.bashrc .bashrc
 ln ~/Development/dotfiles/.profile .profile
 ln ~/Development/dotfiles/.my_alias .my_alias
+ln ~/Development/dotfiles/.bash_profile .bash_profile
 
 backup_file ~/.config/mimeapps.list
 cd ~/.config/
@@ -83,3 +88,10 @@ sudo ln -s ~/Devlopment/dotfiles/scripts/toggle-select-monitor toggle-select-mon
 sudo ln -s ~/Devlopment/dotfiles/scripts/i3-resize i3-resize
 sudo ln -s ~/Devlopment/dotfiles/scripts/i3-increase-font i3-increase-font
 
+mkdir -p ~/.ssh
+~/.ssh/config <<-EOSSH
+Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityFile ~/.ssh/id_rsa
+EOSSH
