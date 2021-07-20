@@ -2,6 +2,7 @@
 # ~/.bash_profile
 #
 
+echo 'Calling .bash_profile'
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
