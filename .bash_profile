@@ -2,9 +2,7 @@
 # ~/.bash_profile
 #
 
-if [ -n "$DESKTOP_SESSION" ]; then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
