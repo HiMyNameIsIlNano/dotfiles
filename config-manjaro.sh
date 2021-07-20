@@ -95,3 +95,4 @@ Host *
     UseKeychain yes
     IdentityFile ~/.ssh/id_rsa
 EOSSH
+sudo echo 'password	optional	pam_gnome_keyring.so' >> /etc/pam.d/passwd
