@@ -28,4 +28,5 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-"Color Scheme let g:airline_theme='luna'
+"Color Scheme 
+let g:airline_theme='luna'
