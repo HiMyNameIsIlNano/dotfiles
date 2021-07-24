@@ -1,0 +1,6 @@
+#!/bin/bash
+
+conky -c $DEV_FOLDER/dotfiles/my_conky_shortcuts &&
+conky -c $DEV_FOLDER/dotfiles/my_conky &&
+
+exit 0

@@ -1,0 +1,6 @@
+export TODOS_OUT_FOLDER=~/.todos
+export DEV_FOLDER=~/Development
+export SDKMAN_DIR=~/.sdkman
+
+# Update PATH
+export PATH=$PATH:~/.local/scripts

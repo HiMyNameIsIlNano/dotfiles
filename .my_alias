@@ -1,23 +1,30 @@
 alias ll="ls -al"
 alias v="vim"
 alias d="docker"
-alias update-all="sudo yay -Syu"
-alias pamac-clean-cache="sudo pacman -Sc && sudo pacman -Qdt && sudo pacman -Rns $(pacman -Qtdq)"
+alias update-all="yay -Syu && clean-cache"
+alias clean-cache="yay -Sc"
 alias install="yay -Syu"
+alias remove="yay -Rs"
+alias remove-stale="yay -Yc"
 alias cddev="cd ${DEV_FOLDER}"
+alias dotfiles="cd ${DEV_FOLDER}/dotfiles"
+alias df="dotfiles"
 alias reload="source ~/.bashrc"
 alias jar-info="archive_info"
-alias pkg-server-update="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
+alias pkg-server-update="sudo pacman-mirrors --fasttrack && update-all"
 alias eb='vim ~/.bashrc'
 alias aa='alias'
 alias i3-cfg-edit='vim ~/.i3/config'
 alias ea='vim ~/.my_alias'
 alias es='vim ~/.my_secrets'
-alias citrix-open="open-citrix"
 alias dfp="dotfiles-push"
 alias dfs="dotfiles-pull"
 alias show-keyboard-layout="sbxkb &"
 alias kblayout="show-keyboard-layout"
+alias usb-list="sudo fdisk -l"
+
+# Temporary Alias
+alias ssh-login='eval $(gnome-keyring-daemon --start) && export SSH_AUTH_SOCK'
 
 # # ex - archive extractor
 # # usage: ex <file>
@@ -59,26 +66,11 @@ archive_info ()
   fi
 }
 
-open-citrix() {
-    if [ "$#" -ne 1 ]; then
-    	echo 'Wrong number of parameters received when calling the function.'
-    	echo "FUNCNAME[0] /path/to/ica_file.ica"
-	return 
-    fi
-
-    local ica_file="$@"
-    /opt/Citrix/ICAClient/wfica ${ica_file} & >& /dev/null
-}
-
 open-in-browser() {
     local url="$@"
     xdg-open ${url} &    
 }
 
-
-if [ "$TERM" != "linux" ]; then
-    source ~/pureline/pureline ~/.pureline.conf
-fi
 
 dotfiles-push() {
     cddev
@@ -94,4 +86,50 @@ dotfiles-pull() {
     cddev
     cd dotfiles
     git pull -r
+}
+
+todo-create() {
+    if [ "$#" -gt 2 ]; then
+    	echo "Up to two parameter must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} [filename] [outdir]."
+		return
+    fi
+
+    local file=$(date +'%Y-%m-%d').todo
+    local out_dir=${TODOS_OUT_FOLDER}
+    if [ "$#" -eq 2 ]; then
+		file="$1".todo
+		out_dir="$2"
+    elif [ "$#" -eq 1 ]; then
+		file="$1".todo
+    else
+		# If I am generating the todo file name with the default strategy, I would like them to be grouped by YYYYMM
+		local YYYYMM=$(date +'%Y-%m')
+		out_dir=${TODOS_OUT_FOLDER}/${YYYYMM}
+    fi
+
+    mkdir -p ${out_dir}
+    cd ${out_dir}
+    if [ ! -f "${file}" ]; then
+		touch ${file}
+		printf ".todo\n.done" > "${file}"
+    fi
+}
+
+todo-edit() {
+    if [ "$#" -gt 1 ]; then
+		echo "Up to one parameter must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} [filename]."
+		return
+    fi
+
+    if [ ! -z $1 ]; then
+		todo-create "$1"
+		vim ${TODOS_OUT_FOLDER}/"$1".todo	
+	else
+		local file_name=$(date +'%Y-%m-%d')
+		local year_and_month_out_dir=$(date +'%Y-%m')
+		todo-create ${file_name} ${TODOS_OUT_FOLDER}/${year_and_month_out_dir}
+		vim ${TODOS_OUT_FOLDER}/${year_and_month_out_dir}/${file_name}.todo	
+    fi
 }

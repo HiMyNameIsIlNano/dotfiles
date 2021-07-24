@@ -93,7 +93,7 @@ unset use_color safe_term match_lhs sh
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
+alias np='vim -w PKGBUILD'
 alias more=less
 
 xhost +local:root > /dev/null 2>&1
@@ -113,12 +113,7 @@ shopt -s expand_aliases
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
 
-export DEV_FOLDER=~/Development
-export JAVA_HOME=~/.sdkman/candidates/java/11.0.11-open/bin
+[[ -f ~/.my_exports ]] && source ~/.my_exports
+[[ -f ~/.my_plugins ]] && source ~/.my_plugins
 [[ -f ~/.my_alias ]] && source ~/.my_alias
 [[ -f ~/.my_secrets ]] && source ~/.my_secrets
-
-export SDKMAN_DIR="/home/user/.sdkman"
-[[ -s "/home/user/.sdkman/bin/sdkman-init.sh" ]] && source "/home/user/.sdkman/bin/sdkman-init.sh"
-
-export PATH=$PATH:~/.local/scripts

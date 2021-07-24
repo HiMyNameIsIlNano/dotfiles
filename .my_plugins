@@ -1,0 +1,6 @@
+# Sourcing pureline
+if [ "$TERM" != "linux" ]; then
+    source ~/pureline/pureline ~/.pureline.conf
+fi
+
+[[ -s ~/.sdkman/bin/sdkman-init.sh ]] && source ~/.sdkman/bin/sdkman-init.sh
