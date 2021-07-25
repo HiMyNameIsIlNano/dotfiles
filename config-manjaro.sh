@@ -64,7 +64,11 @@ yay -Syu zip \
 	spotify \
 	libsecret \
 	seahorse \
-	intellij-idea-ultimate-edition
+	intellij-idea-ultimate-edition \
+	intellij-idea-ultimate-edition-jre \
+        docker \
+        docker-compose \
+	nerd-fonts-fira-code
 
 yay -Rs palemoon-bin mousepad
 
