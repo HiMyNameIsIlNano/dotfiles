@@ -83,10 +83,10 @@ bindsym $mod+Ctrl+p exec --no-startup-id pkill picom
 bindsym $mod+Shift+p exec --no-startup-id "pkill picom; picom -b; exec notify-send 'restart picom'"
 
 # Restart Conky
-bindsym $mod+Shift+c exec --no-startup-id "pkill conky; start_my_conky; exec notify-send 'restart conky'"
+bindsym $mod+Shift+c exec --no-startup-id "pkill conky; start-my-conky; exec notify-send 'restart conky'"
 
 # Restart Desktop
-bindsym $mod+Shift+w exec --no-startup-id "pkill conky; start_my_conky; nitrogen --restore; exec notify-send 'restart desktop'"
+bindsym $mod+Shift+w exec --no-startup-id "pkill conky; start-my-conky; nitrogen --restore; exec notify-send 'restart desktop'"
 
 # Notification manager
 bindsym $mod+n --release exec "killall dunst; dunst; exec notify-send 'restart dunst'"
@@ -136,7 +136,7 @@ bindsym $mod+Right focus right
 # Screen
 bindsym $mod+l exec --no-startup-id blurlock
 bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+Shift+m exec --no-startup-id "toggle-select-monitor; pkill conky; start_my_conky; nitrogen --restore;"
+bindsym $mod+Shift+m exec --no-startup-id "toggle-select-monitor; pkill conky; start-my-conky; nitrogen --restore;"
 
 # Keyboard
 bindsym $mod+Ctrl+Shift+d exec --no-startup-id "setxkbmap -model pc104 -layout de; exec notify-send 'keyboard layout DE'"
@@ -226,8 +226,7 @@ for_window [urgent=latest] focus
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id toggle-select-monitor
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id toggle-select-monitor; sleep 5; start-my-conky; nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
@@ -239,7 +238,7 @@ exec --no-startup-id slack
 # exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 
-exec --no-startup-id start_my_conky
+exec --no-startup-id start-my-conky
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor

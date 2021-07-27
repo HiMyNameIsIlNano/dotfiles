@@ -72,6 +72,11 @@ yay -Syu zip \
 
 yay -Rs palemoon-bin mousepad
 
+# Configure docker
+sudm systemctl start docker.service
+sudo systemctl enable docker.service
+sudo usermod -aG docker $(whoami)
+
 mkdir -p ~/Development
 cd ~/Development 
 
@@ -103,13 +108,14 @@ ln -s ~/Development/dotfiles/i3/config config
 mkdir -p ~/.local/scripts
 cd ~/.local/scripts
 ln -s ~/Development/dotfiles/scripts i3-scripts
-ln -s ~/Development/dotfiles/start_my_conky start_my_conky
+ln -s ~/Development/dotfiles/start-my-conky start-my-conky
 
 cd /usr/bin
 sudo ln -s ~/Devlopment/dotfiles/scripts/toggle-select-monitor toggle-select-monitor
 sudo ln -s ~/Devlopment/dotfiles/scripts/i3-resize i3-resize
 sudo ln -s ~/Devlopment/dotfiles/scripts/i3-increase-font i3-increase-font
 sudo ln -s ~/Devlopment/dotfiles/scripts/start_my_conky start_my_conky
+sudo ln -s ~/Development/dotfiles/start-my-conky start-my-conky
 
 init_ssh_agent
 install_sdkman
