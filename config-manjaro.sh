@@ -103,7 +103,7 @@ ln -s ~/Development/dotfiles/mimeapps.list mimeapps.list
 
 backup_file ~/.i3/config
 cd ~/.i3
-ln -s ~/Development/dotfiles/i3/config config
+ln -s ~/Development/dotfiles/i3/config i3.config
 
 mkdir -p ~/.local/scripts
 cd ~/.local/scripts
