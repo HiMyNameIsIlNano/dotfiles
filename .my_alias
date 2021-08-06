@@ -1,11 +1,14 @@
 alias ll="ls -al"
 alias v="vim"
 alias d="docker"
+
 alias update-all="yay -Syu && clean-cache"
 alias clean-cache="yay -Sc"
 alias install="yay -Syu"
 alias remove="yay -Rs"
 alias remove-stale="yay -Yc"
+alias tellme="yay -Ss"
+
 alias cddev="cd ${DEV_FOLDER}"
 alias dotfiles="cd ${DEV_FOLDER}/dotfiles"
 alias df="dotfiles"
@@ -21,7 +24,8 @@ alias dfp="dotfiles-push"
 alias dfs="dotfiles-pull"
 alias show-keyboard-layout="sbxkb &"
 alias kblayout="show-keyboard-layout"
-alias usb-list="sudo fdisk -l"
+alias llusb="sudo fdisk -l"
+alias cdusb="cd /run/media/$(whoami)"
 
 # Temporary Alias
 alias ssh-login='eval $(gnome-keyring-daemon --start) && export SSH_AUTH_SOCK'

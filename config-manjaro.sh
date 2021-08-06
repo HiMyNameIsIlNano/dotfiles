@@ -66,9 +66,11 @@ yay -Syu zip \
 	seahorse \
 	intellij-idea-ultimate-edition \
 	intellij-idea-ultimate-edition-jre \
-        docker \
-        docker-compose \
-	nerd-fonts-fira-code
+    docker \
+    docker-compose \
+	nerd-fonts-fira-code \
+    keepassxc \
+    linux-timemachine-git
 
 yay -Rs palemoon-bin mousepad
 
