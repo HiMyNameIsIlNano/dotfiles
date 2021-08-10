@@ -27,8 +27,10 @@ alias kblayout="show-keyboard-layout"
 alias llusb="sudo fdisk -l"
 alias cdusb="cd /run/media/$(whoami)"
 
-# Temporary Alias
-alias ssh-login='eval $(gnome-keyring-daemon --start) && export SSH_AUTH_SOCK'
+# Git Alias
+alias gcl="git clone"
+alias gc="git commit -m"
+alias gp="git push"
 
 # # ex - archive extractor
 # # usage: ex <file>
