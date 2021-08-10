@@ -71,7 +71,8 @@ yay -Syu zip \
 	nerd-fonts-fira-code \
     keepassxc \
     timeshift \
-    nodejs
+    nodejs \
+    npm
 
 yay -Rs palemoon-bin mousepad
 
