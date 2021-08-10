@@ -70,7 +70,8 @@ yay -Syu zip \
     docker-compose \
 	nerd-fonts-fira-code \
     keepassxc \
-    linux-timemachine-git
+    timeshift \
+    nodejs
 
 yay -Rs palemoon-bin mousepad
 
