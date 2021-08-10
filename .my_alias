@@ -31,6 +31,7 @@ alias cdusb="cd /run/media/$(whoami)"
 alias gcl="git clone"
 alias gc="git commit -m"
 alias gp="git push"
+alias gg="git pull --rebase"
 
 # # ex - archive extractor
 # # usage: ex <file>
