@@ -230,7 +230,6 @@ exec --no-startup-id toggle-select-monitor; sleep 5; start-my-conky; nitrogen --
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
-# exec_always --no-startup-id sbxkb
 
 # Custom autostart application
 exec --no-startup-id slack
