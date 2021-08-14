@@ -139,8 +139,11 @@ bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod+Shift+m exec --no-startup-id "toggle-select-monitor; pkill conky; start-my-conky; nitrogen --restore;"
 
 # Keyboard
-bindsym $mod+Ctrl+Shift+d exec --no-startup-id "setxkbmap -model pc104 -layout de; exec notify-send 'keyboard layout DE'"
-bindsym $mod+Ctrl+Shift+i exec --no-startup-id "setxkbmap -model pc104 -layout it; exec notify-send 'keyboard layout IT'"
+#bindsym $mod+Ctrl+Shift+d exec --no-startup-id "setxkbmap -model pc104 -layout de; exec notify-send 'keyboard layout DE'"
+bindsym $mod+Ctrl+Shift+d exec i3-keyboard-layout set de
+#bindsym $mod+Ctrl+Shift+i exec --no-startup-id "setxkbmap -model pc104 -layout it; exec notify-send 'keyboard layout IT'"
+bindsym $mod+Ctrl+Shift+i exec i3-keyboard-layout set it
+bindsym $mod+Ctrl+Shift+t exec i3-keyboard-layout cycle de it
 
 # Program
 #bindsym $mod+F  exec
@@ -277,7 +280,8 @@ set_from_resource $term_color15    color15
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	i3bar_command i3bar
-	status_command i3status
+	status_command i3status | i3-keyboard-layout i3status
+	#status_command i3status
 	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'

@@ -29,7 +29,9 @@ alias cdusb="cd /run/media/$(whoami)"
 
 # Git Alias
 alias gcl="git clone"
+alias ga="git add ."
 alias gc="git commit -m"
+alias gac="ga && gc"
 alias gp="git push"
 alias gg="git pull --rebase"
 

@@ -46,6 +46,13 @@ EOSSH
     sudo echo 'password	   optional	pam_gnome_keyring.so' >> /etc/pam.d/passwd
 }
 
+init_i3_keyboard_layout() {
+    cd $DEV_FOLDER/
+    git clone https://github.com/porras/i3-keyboard-layout.git
+    sudo cp ./i3-keyboard-layout/i3-keyboard-layout /usr/bin
+    chmod +x /usr/bin/i3-keyboard-layout
+}
+
 install_sdkman() {
     curl -s "https://get.sdkman.io" | bash
     source "~/.sdkman/bin/sdkman-init.sh"
@@ -122,4 +129,5 @@ sudo ln -s ~/Devlopment/dotfiles/scripts/start_my_conky start_my_conky
 sudo ln -s ~/Development/dotfiles/start-my-conky start-my-conky
 
 init_ssh_agent
+init_i3_keyboard_layout
 install_sdkman
