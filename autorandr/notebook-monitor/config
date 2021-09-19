@@ -1,12 +1,10 @@
-output DP1
+output VGA-1
 off
-output VGA1
+output DP-1
 off
-output VIRTUAL1
+output HDMI-1
 off
-output HDMI1
-off
-output LVDS1
+output LVDS-1
 crtc 0
 mode 1600x900
 pos 0x0
