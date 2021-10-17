@@ -88,8 +88,10 @@ sudm systemctl start docker.service
 sudo systemctl enable docker.service
 sudo usermod -aG docker $(whoami)
 
-mkdir -p ~/Development
-cd ~/Development 
+export DEV_FOLDER=~/Development
+
+mkdir -p $DEV_FOLDER
+cd $DEV_FOLDER 
 
 git clone git@github.com:HiMyNameIsIlNano/dotfiles.git
 
@@ -98,35 +100,39 @@ backup_file ~/.profile
 backup_file ~/.my_alias
 backup_file ~/.bash_profile
 cd ~
-ln -s ~/Development/dotfiles/.bashrc .bashrc
-ln -s ~/Development/dotfiles/.profile .profile
-ln -s ~/Development/dotfiles/.my_exports .my_exports
-ln -s ~/Development/dotfiles/.my_plugins .my_plugins
-ln -s ~/Development/dotfiles/.my_alias .my_alias
-ln -s ~/Development/dotfiles/.bash_profile .bash_profile
+ln -s $DEV_FOLDER/dotfiles/.bashrc .bashrc
+ln -s $DEV_FOLDER/dotfiles/.profile .profile
+ln -s $DEV_FOLDER/dotfiles/.my_exports .my_exports
+ln -s $DEV_FOLDER/dotfiles/.my_plugins .my_plugins
+ln -s $DEV_FOLDER/dotfiles/.my_alias .my_alias
+ln -s $DEV_FOLDER/dotfiles/.bash_profile .bash_profile
 ln -s /usr/share/pureline pureline
-ln -s ~/Development/dotfiles/tty_full.conf .pureline.conf
-ln -s ~/Development/dotfiles/.vimrc .vimrc
+ln -s $DEV_FOLDER/dotfiles/tty_full.conf .pureline.conf
+ln -s $DEV_FOLDER/dotfiles/.vimrc .vimrc
 
 backup_file ~/.config/mimeapps.list
 cd ~/.config/
-ln -s ~/Development/dotfiles/mimeapps.list mimeapps.list
+ln -s $DEV_FOLDER/dotfiles/mimeapps.list mimeapps.list
 
 backup_file ~/.i3/config
 cd ~/.i3
-ln -s ~/Development/dotfiles/i3/config i3.config
+ln -s $DEV_FOLDER/dotfiles/i3/config i3.config
 
 mkdir -p ~/.local/scripts
 cd ~/.local/scripts
-ln -s ~/Development/dotfiles/scripts i3-scripts
-ln -s ~/Development/dotfiles/start-my-conky start-my-conky
+ln -s $DEV_FOLDER/dotfiles/scripts i3-scripts
+ln -s $DEV_FOLDER/dotfiles/start-my-conky start-my-conky
 
 cd /usr/bin
-sudo ln -s ~/Devlopment/dotfiles/scripts/toggle-select-monitor toggle-select-monitor
-sudo ln -s ~/Devlopment/dotfiles/scripts/i3-resize i3-resize
-sudo ln -s ~/Devlopment/dotfiles/scripts/i3-increase-font i3-increase-font
-sudo ln -s ~/Devlopment/dotfiles/scripts/start_my_conky start_my_conky
-sudo ln -s ~/Development/dotfiles/start-my-conky start-my-conky
+sudo ln -s $DEV_FOLDER/dotfiles/scripts/toggle-select-monitor toggle-select-monitor
+sudo ln -s $DEV_FOLDER/dotfiles/scripts/i3-resize i3-resize
+sudo ln -s $DEV_FOLDER/dotfiles/scripts/i3-increase-font i3-increase-font
+sudo ln -s $DEV_FOLDER/dotfiles/start-my-conky start-my-conky
+sudo ln -s $DEV_FOLDER/dotfiles/scripts/try-use-external-monitor try-use-external-monitor
+
+cd /usr/share/conky
+sudo ln -s $DEV_FOLDER/dotfiles/my_conky_shortcuts my_conky_shortcuts
+sudo ln -s $DEV_FOLDER/dotfiles/my_conky my_conky
 
 init_ssh_agent
 init_i3_keyboard_layout

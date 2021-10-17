@@ -16,7 +16,7 @@ hide_edge_borders none
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 11
+font xft:URWGothic-Book 12
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -136,7 +136,7 @@ bindsym $mod+Right focus right
 # Screen
 bindsym $mod+l exec --no-startup-id blurlock
 bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+Shift+m exec --no-startup-id "toggle-select-monitor; pkill conky; start-my-conky; nitrogen --restore;"
+bindsym $mod+Shift+m exec --no-startup-id "toggle-select-monitor; pkill conky; start-my-conky; nitrogen --restore; picom -b"
 
 # Keyboard
 bindsym $mod+Ctrl+Shift+d exec "i3-keyboard-layout set de; exec notify-send 'keyboard layout DE'"
@@ -226,7 +226,7 @@ for_window [urgent=latest] focus
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id toggle-select-monitor; sleep 5; start-my-conky; nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id sleep 5; try-use-external-monitor; pkill conky; start-my-conky; nitrogen --restore; picom -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
@@ -237,7 +237,6 @@ exec --no-startup-id slack
 # exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 
-exec --no-startup-id start-my-conky
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
@@ -285,7 +284,7 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-#   font xft:URWGothic-Book 11
+#   font xft:URWGothic-Book 12
 	strip_workspace_numbers yes
 
     colors {

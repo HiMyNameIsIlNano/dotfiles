@@ -1,6 +1,6 @@
 #!/bin/bash
 
-conky -c $DEV_FOLDER/dotfiles/my_conky_shortcuts &&
-conky -c $DEV_FOLDER/dotfiles/my_conky &&
+conky -c /usr/share/conky/my_conky_shortcuts &&
+conky -c /usr/share/conky/my_conky &&
 
 exit 0

@@ -8,6 +8,7 @@ alias install="yay -Syu"
 alias remove="yay -Rs"
 alias remove-stale="yay -Yc"
 alias tellme="yay -Ss"
+alias timer="python ~/Development/timer/timer.py"
 
 alias cddev="cd ${DEV_FOLDER}"
 alias dotfiles="cd ${DEV_FOLDER}/dotfiles"
