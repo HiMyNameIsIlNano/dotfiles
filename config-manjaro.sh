@@ -79,7 +79,13 @@ yay -Syu zip \
     keepassxc \
     timeshift \
     nodejs \
-    npm
+    npm \
+    pulseaudio \
+    webex-bin
+
+# Required by Webex: Enable network access to local sound devices
+pulseaudio --start
+pacmd load-module module-native-protocol-tcp auth-anonymous=1
 
 yay -Rs palemoon-bin mousepad
 
