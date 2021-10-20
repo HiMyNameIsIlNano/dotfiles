@@ -84,8 +84,9 @@ yay -Syu zip \
     webex-bin
 
 # Required by Webex: Enable network access to local sound devices
+sudo usermod -aG audio $(whoami)
 pulseaudio --start
-pacmd load-module module-native-protocol-tcp auth-anonymous=1
+pacmd load-module module-native-protocol-tcp
 
 yay -Rs palemoon-bin mousepad
 
