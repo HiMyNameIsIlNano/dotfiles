@@ -25,5 +25,5 @@ ${color2}open file manager - ${color}mod+F4
 
 ${color2}toggle split direction - ${color}mod+Shift+t
 ${color2}split vertically [horizontally] - ${color}mod+v [mod+h]
-${color2}layout stacking [tabbed] [default] - ${color}mod+s [mod+t] [mod+e]
+${color2}layout stacking [tabbed] [default] - ${color}mod+Ctrl+s [mod+Ctrl+t] [mod+Ctrl+e]
 ]]

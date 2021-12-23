@@ -12,6 +12,8 @@ alias timer="python ~/Development/timer/timer.py"
 
 alias cddev="cd ${DEV_FOLDER}"
 alias dotfiles="cd ${DEV_FOLDER}/dotfiles"
+alias cdnotes="cd ${DEV_FOLDER}/animated-funicular/notes/contents"
+
 alias df="dotfiles"
 alias reload="source ~/.bashrc"
 alias jar-info="archive_info"
@@ -26,7 +28,12 @@ alias dfs="dotfiles-pull"
 alias show-keyboard-layout="sbxkb &"
 alias kblayout="show-keyboard-layout"
 alias llusb="sudo fdisk -l"
-alias cdusb="cd /run/media/$(whoami)"
+alias cdsd="cd /mnt/sdcard"
+alias sdmnt="sudo mount /dev/mmcblk0p1 /mnt/sdcard/"
+
+# Network utility
+alias wifi-list='nmcli device wifi list'
+alias wifi-connect='nmcli device wifi connect'
 
 # Git Alias
 alias gcl="git clone"
@@ -35,6 +42,7 @@ alias gc="git commit -m"
 alias gac="ga && gc"
 alias gp="git push"
 alias gg="git pull --rebase"
+alias gs="git status"
 
 # # ex - archive extractor
 # # usage: ex <file>

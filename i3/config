@@ -31,15 +31,28 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
+# Workspace names
+# to display names or symbols instead of plain workspace numbers you can use
+# something like: set $ws1 1:mail
+#                 set $ws2 2:
+set $ws1 1:dev@1
+set $ws2 2:dev@2
+set $ws3 3:terminal@3
+set $ws4 4:admin@4
+set $ws5 5:messaging@5
+set $ws6 6:music@6
+set $ws7 7:web@7
+set $ws8 8:extra@8
+
 # Move to workspace
-bindsym $mod+1 workspace $ws1
+bindsym $mod+b workspace $ws1
 bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
+bindsym $mod+t workspace $ws3
+bindsym $mod+a workspace $ws4
+bindsym $mod+m workspace $ws5
+bindsym $mod+s workspace $ws6
+bindsym $mod+w workspace $ws7
+bindsym $mod+x workspace $ws8
 
 # Move active container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -75,7 +88,8 @@ bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Ctrl+Print --release exec --no-startup-id i3-scrot -s
 
 # Tray manager
-bindsym $mod+Ctrl+t --release exec --no-startup-id "pkill pamac-manager; pkill pamac-tray; pamac-manager; pamac-tray; exec notify-send 'restart pamac-update'"
+# TODO: make an alias for this
+#bindsym $mod+Ctrl+t --release exec --no-startup-id "pkill pamac-manager; pkill pamac-tray; pamac-manager; pamac-tray; exec notify-send 'restart pamac-update'"
 
 # Composite manager
 bindsym $mod+p exec --no-startup-id picom -b
@@ -102,14 +116,14 @@ bindsym $mod+Ctrl+d exec --no-startup-id "i3-increase-font -1"; restart; exec no
 bindsym $mod+Shift+Ctrl+f fullscreen toggle
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
-bindsym $mod+e layout default;exec notify-send 'default layout'
-bindsym $mod+s layout stacking;exec notify-send 'stacking layout'
-bindsym $mod+t layout tabbed;exec notify-send 'tabbed layout'
+bindsym $mod+Ctrl+q split toggle;exec notify-send 'toggled split'
+bindsym $mod+Ctrl+e layout default;exec notify-send 'default layout'
+bindsym $mod+Ctrl+s layout stacking;exec notify-send 'stacking layout'
+bindsym $mod+Ctrl+t layout tabbed;exec notify-send 'tabbed layout'
 bindsym $mod+Shift+t layout toggle split
 
 # Close container
-bindsym $mod+x kill
+bindsym $mod+q kill
 
 # Resize container
 bindsym $mod+Shift+d exec --no-startup-id i3-resize down
@@ -168,19 +182,6 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# Workspace names
-# to display names or symbols instead of plain workspace numbers you can use
-# something like: set $ws1 1:mail
-#                 set $ws2 2:
-set $ws1 1:dev-be@1
-set $ws2 2:dev-be@2
-set $ws3 3:dev-fe@3
-set $ws4 4:dev-fe@4
-set $ws5 5:office@5
-set $ws6 6:music@6
-set $ws7 7:browser@7
-set $ws8 8:misc@8
-
 # Open applications on specific workspaces
 # Workspace 1
 assign [class="jetbrains-idea"] $ws1
@@ -190,7 +191,7 @@ assign [class="Wfica"] $ws1
 assign [class="rider"] $ws4
 
 # Workspace 5
-assign [class="Slack"] $ws5
+assign [class="webex"] $ws5
 
 # Workspace 6
 for_window [class="Spotify"] move to workspace $ws6
@@ -232,9 +233,6 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 
 # Custom autostart application
-exec --no-startup-id slack
-exec --no-startup-id webex
-
 # exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 
@@ -303,7 +301,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+bindsym $mod+Shift+b bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
