@@ -58,6 +58,10 @@ install_sdkman() {
     source "~/.sdkman/bin/sdkman-init.sh"
 }
 
+init_bash_completion() {
+    git clone https://github.com/juven/maven-bash-completion.git $DEV_FOLDER/
+}
+
 sudo pacman-mirrors --fasttrack 
 sudo pacman -Syyu
 
@@ -145,3 +149,4 @@ sudo ln -s $DEV_FOLDER/dotfiles/my_conky my_conky
 init_ssh_agent
 init_i3_keyboard_layout
 install_sdkman
+init_git_bash_completion
