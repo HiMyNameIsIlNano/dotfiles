@@ -81,7 +81,8 @@ yay -Syu zip \
     nodejs \
     npm \
     pulseaudio \
-    webex-bin
+    webex-bin \
+    git-bash-completion
 
 # Required by Webex: Enable network access to local sound devices
 sudo usermod -aG audio $(whoami)

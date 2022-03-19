@@ -30,6 +30,7 @@ alias kblayout="show-keyboard-layout"
 alias llusb="sudo fdisk -l"
 alias cdsd="cd /mnt/sdcard"
 alias sdmnt="sudo mount /dev/mmcblk0p1 /mnt/sdcard/"
+alias pamac-restart="pkill pamac-manager && pkill pamac-tray && pamac-manager &&  pamac-tray && exec notify-send 'restart pamac-update'"
 
 # Network utility
 alias wifi-list='nmcli device wifi list'
