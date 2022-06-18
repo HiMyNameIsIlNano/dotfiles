@@ -200,11 +200,6 @@ mode "$mode_monitor" {
 # Open applications on specific workspaces
 # Workspace 1
 assign [class="jetbrains-idea"] $ws1
-assign [class="Wfica"] $ws1
-assign [class="rider"] $ws1
-
-# Workspace 5
-assign [class="webex"] $ws5
 
 # Workspace 6
 for_window [class="Spotify"] move to workspace $ws6
