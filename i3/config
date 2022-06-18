@@ -25,7 +25,7 @@ floating_modifier $mod
 
 # Sound
 exec --no-startup-id volumeicon
-#Collision: bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+bindsym $mod+Ctrl+v exec terminal -e 'alsamixer'
 
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
@@ -95,8 +95,6 @@ bindsym $mod+Shift+p exec --no-startup-id "pkill picom; picom -b; exec notify-se
 # Restart Conky
 bindsym $mod+Shift+c exec --no-startup-id "pkill conky; start-my-conky; exec notify-send 'restart conky'"
 
-# Restart Desktop
-#Collision: bindsym $mod+Shift+w exec --no-startup-id "pkill conky; start-my-conky; nitrogen --restore; exec notify-send 'restart desktop'"
 
 # Notification manager
 bindsym $mod+n --release exec "killall dunst; dunst; exec notify-send 'restart dunst'"
@@ -104,8 +102,7 @@ bindsym $mod+n --release exec "killall dunst; dunst; exec notify-send 'restart d
 # i3 config
 bindsym $mod+r reload
 bindsym $mod+Ctrl+r restart
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-#Collision: bindsym $mod+Ctrl+f exec --no-startup-id "i3-increase-font"; restart; exec notify-send 'i3 font increased'
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-#bindsym $mod+... exec --no-startup-id "i3-increase-font"; restart; exec notify-send 'i3 font increased'
 bindsym $mod+Ctrl+d exec --no-startup-id "i3-increase-font -1"; restart; exec notify-send 'i3 font decreased'
 
 # i3 tiling
@@ -114,10 +111,6 @@ bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+Ctrl+q split toggle;exec notify-send 'toggled split'
 bindsym $mod+Ctrl+e layout default;exec notify-send 'default layout'
-#Collision: bindsym $mod+Ctrl+s layout stacking;exec notify-send 'stacking layout'
-#Collision: bindsym $mod+Ctrl+t layout tabbed;exec notify-send 'tabbed layout'
-#Collision: bindsym $mod+Shift+t layout toggle split
-
 # Close container
 bindsym $mod+q kill
 
@@ -133,9 +126,6 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Right move right
 
-# Floating mode
-#Collision: bindsym $mod+Shift+f floating toggle
-#Collision: bindsym $mod+Shift+s sticky toggle
 
 # Focus container
 bindsym $mod+Down focus down
@@ -146,7 +136,6 @@ bindsym $mod+Right focus right
 # Screen
 bindsym $mod+l exec --no-startup-id blurlock
 bindsym $mod+d exec --no-startup-id dmenu_recency
-#Collision: bindsym $mod+Shift+m exec --no-startup-id "toggle-select-monitor; pkill conky; start-my-conky; nitrogen --restore; picom -b"
 
 # Keyboard
 bindsym $mod+Ctrl+Shift+d exec "i3-keyboard-layout set de; exec notify-send 'keyboard layout DE'"
@@ -174,6 +163,35 @@ mode "$mode_system" {
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Set tiling windows features
+bindsym $mod+1 mode "$mode_tiling"
+set $mode_tiling (s)tacking, (t)abbed, (Shift+t)oggle, (f)loating, sti(k)y
+mode "$mode_tiling" {
+    bindsym s layout stacking;exec notify-send 'stacking layout'
+    bindsym t layout tabbed;exec notify-send 'tabbed layout'
+    bindsym Shift+t layout toggle split
+    
+    # Floating mode
+    bindsym f floating toggle
+    bindsym k sticky toggle
+   
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Set monitor output and restart desktop
+bindsym $mod+2 mode "$mode_monitor"
+set $mode_monitor (r)estart desktop, (t)oggle screen
+mode "$mode_monitor" {
+    bindsym r exec --no-startup-id "pkill conky; start-my-conky; nitrogen --restore; exec notify-send 'restart desktop'"
+    bindsym t exec --no-startup-id "toggle-select-monitor; pkill conky; start-my-conky; nitrogen --restore; picom -b"
+    
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -210,9 +228,6 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-
-# Citrix client
-for_window [class="Wfica"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -296,7 +311,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-#Collision: bindsym $mod+Shift+b bar mode toggle
+# bindsym $mod+Shift+h bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
