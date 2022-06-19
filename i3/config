@@ -137,10 +137,10 @@ bindsym $mod+Ctrl+Shift+t exec "i3-keyboard-layout cycle de it; exec notify-send
 
 # Program
 #bindsym $mod+F  exec
-bindsym $mod+Shift+w exec chromium
-bindsym $mod+Shift+i exec intellij-idea-ultimate-edition
-bindsym $mod+Shift+s exec spotify
-bindsym $mod+e exec pcmanfm
+bindsym $mod+Shift+w exec chromium; exec notify-send 'opening browser'
+bindsym $mod+Shift+i exec intellij-idea-ultimate-edition; exec notify-send 'opening intellij'
+bindsym $mod+Shift+s exec spotify; exec notify-send 'opening spotify'
+bindsym $mod+e exec pcmanfm; exec notify-send 'file system manager'
 
 bindsym $mod+Return exec terminal
 
