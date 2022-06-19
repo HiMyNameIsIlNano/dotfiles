@@ -107,12 +107,6 @@ bindsym $mod+Ctrl+e layout default;exec notify-send 'default layout'
 # Close container
 bindsym $mod+q kill
 
-# Resize container
-bindsym $mod+Shift+d exec --no-startup-id i3-resize down
-bindsym $mod+Shift+l exec --no-startup-id i3-resize left
-bindsym $mod+Shift+r exec --no-startup-id i3-resize right
-bindsym $mod+Shift+u exec --no-startup-id i3-resize up
-
 # Move container
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -161,7 +155,7 @@ mode "$mode_system" {
 }
 
 # Set tiling windows features
-bindsym $mod+1 mode "$mode_layout"
+bindsym $mod+Shift+l mode "$mode_layout"
 set $mode_layout (s)tacking, (t)abbed, (Shift+t)oggle, (f)loating, sti(k)y
 mode "$mode_layout" {
     bindsym s layout stacking;exec notify-send 'stacking layout'
@@ -178,7 +172,7 @@ mode "$mode_layout" {
 }
 
 # Set monitor output and restart desktop
-bindsym $mod+2 mode "$mode_output"
+bindsym $mod+Shift+o mode "$mode_output"
 set $mode_output (r)estart desktop, (t)oggle screen
 mode "$mode_output" {
     bindsym r exec --no-startup-id "pkill conky; start-my-conky; nitrogen --restore; exec notify-send 'restart desktop'"
@@ -190,7 +184,7 @@ mode "$mode_output" {
 }
 
 # Set i3 reload, restart, increase and decrease font
-bindsym $mod+3 mode "$mode_i3"
+bindsym $mod+Shift+3 mode "$mode_i3"
 set $mode_i3 (r)estart, re(l)oad, (i)ncrease font, (d)ecrease font, (q)uit i3
 mode "$mode_i3" {
     # i3 config
@@ -199,6 +193,21 @@ mode "$mode_i3" {
     bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3'"
     bindsym i exec --no-startup-id "i3-increase-font"; restart; exec notify-send 'i3 font increased'
     bindsym d exec --no-startup-id "i3-increase-font -1"; restart; exec notify-send 'i3 font decreased'
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Set resize mode 
+bindsym $mod+Shift+r mode "$mode_resize"
+set $mode_resize (l)eft, (r)ight, (u)p, (d)own 
+mode "$mode_resize" {
+    # Resize container
+    bindsym d exec --no-startup-id i3-resize down
+    bindsym l exec --no-startup-id i3-resize left
+    bindsym r exec --no-startup-id i3-resize right
+    bindsym u exec --no-startup-id i3-resize up
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
