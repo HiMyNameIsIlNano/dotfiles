@@ -65,14 +65,14 @@ bindsym $mod+Ctrl+w move container to workspace $ws7
 bindsym $mod+Ctrl+x move container to workspace $ws8
 
 # Move active container to workspace and focus
-bindsym $mod+Shift+b move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+f move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+t move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+a move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+m move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+s move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+w move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+x move container to workspace $ws8; workspace $ws8
+#bindsym $mod+Shift+b move container to workspace $ws1; workspace $ws1
+#bindsym $mod+Shift+f move container to workspace $ws2; workspace $ws2
+#bindsym $mod+Shift+t move container to workspace $ws3; workspace $ws3
+#bindsym $mod+Shift+a move container to workspace $ws4; workspace $ws4
+#bindsym $mod+Shift+m move container to workspace $ws5; workspace $ws5
+#bindsym $mod+Shift+s move container to workspace $ws6; workspace $ws6
+#bindsym $mod+Shift+w move container to workspace $ws7; workspace $ws7
+#bindsym $mod+Shift+x move container to workspace $ws8; workspace $ws8
 
 # Move between workspaces
 bindsym $mod+Ctrl+Left workspace prev
@@ -95,15 +95,8 @@ bindsym $mod+Shift+p exec --no-startup-id "pkill picom; picom -b; exec notify-se
 # Restart Conky
 bindsym $mod+Shift+c exec --no-startup-id "pkill conky; start-my-conky; exec notify-send 'restart conky'"
 
-
 # Notification manager
 bindsym $mod+n --release exec "killall dunst; dunst; exec notify-send 'restart dunst'"
-
-# i3 config
-bindsym $mod+r reload
-bindsym $mod+Ctrl+r restart
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-#bindsym $mod+... exec --no-startup-id "i3-increase-font"; restart; exec notify-send 'i3 font increased'
-bindsym $mod+Ctrl+d exec --no-startup-id "i3-increase-font -1"; restart; exec notify-send 'i3 font decreased'
 
 # i3 tiling
 bindsym $mod+Shift+Ctrl+f fullscreen toggle
@@ -144,11 +137,10 @@ bindsym $mod+Ctrl+Shift+t exec "i3-keyboard-layout cycle de it; exec notify-send
 
 # Program
 #bindsym $mod+F  exec
-bindsym $mod+F1 exec chromium
-bindsym $mod+F2 exec intellij-idea-ultimate-edition
-bindsym $mod+F3 exec spotify
-bindsym $mod+F4 exec pcmanfm
-bindsym $mod+F5 exec webex
+bindsym $mod+Shift+w exec chromium
+bindsym $mod+Shift+i exec intellij-idea-ultimate-edition
+bindsym $mod+Shift+s exec spotify
+bindsym $mod+e exec pcmanfm
 
 bindsym $mod+Return exec terminal
 
@@ -169,9 +161,9 @@ mode "$mode_system" {
 }
 
 # Set tiling windows features
-bindsym $mod+1 mode "$mode_tiling"
-set $mode_tiling (s)tacking, (t)abbed, (Shift+t)oggle, (f)loating, sti(k)y
-mode "$mode_tiling" {
+bindsym $mod+1 mode "$mode_layout"
+set $mode_layout (s)tacking, (t)abbed, (Shift+t)oggle, (f)loating, sti(k)y
+mode "$mode_layout" {
     bindsym s layout stacking;exec notify-send 'stacking layout'
     bindsym t layout tabbed;exec notify-send 'tabbed layout'
     bindsym Shift+t layout toggle split
@@ -186,12 +178,28 @@ mode "$mode_tiling" {
 }
 
 # Set monitor output and restart desktop
-bindsym $mod+2 mode "$mode_monitor"
-set $mode_monitor (r)estart desktop, (t)oggle screen
-mode "$mode_monitor" {
+bindsym $mod+2 mode "$mode_output"
+set $mode_output (r)estart desktop, (t)oggle screen
+mode "$mode_output" {
     bindsym r exec --no-startup-id "pkill conky; start-my-conky; nitrogen --restore; exec notify-send 'restart desktop'"
     bindsym t exec --no-startup-id "toggle-select-monitor; pkill conky; start-my-conky; nitrogen --restore; picom -b"
     
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Set i3 reload, restart, increase and decrease font
+bindsym $mod+3 mode "$mode_i3"
+set $mode_i3 (r)estart, re(l)oad, (i)ncrease font, (d)ecrease font, (q)uit i3
+mode "$mode_i3" {
+    # i3 config
+    bindsym r reload
+    bindsym l restart
+    bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3'"
+    bindsym i exec --no-startup-id "i3-increase-font"; restart; exec notify-send 'i3 font increased'
+    bindsym d exec --no-startup-id "i3-increase-font -1"; restart; exec notify-send 'i3 font decreased'
+
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
