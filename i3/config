@@ -35,14 +35,14 @@ bindsym $mod+Ctrl+v exec terminal -e 'alsamixer'
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1:dev@b
-set $ws2 2:dev@f
-set $ws3 3:terminal@t
-set $ws4 4:admin@a
-set $ws5 5:messaging@m
-set $ws6 6:spotify@s
-set $ws7 7:web@w
-set $ws8 8:extra@x
+set $ws1 1: dev@b
+set $ws2 2: dev@f
+set $ws3 3: terminal@t
+set $ws4 4: admin@a
+set $ws5 5: messaging@m
+set $ws6 6: music@y
+set $ws7 7: web@w
+set $ws8 8: extra@x
 
 # Move to workspace
 bindsym $mod+b workspace $ws1
@@ -50,19 +50,19 @@ bindsym $mod+f workspace $ws2
 bindsym $mod+t workspace $ws3
 bindsym $mod+a workspace $ws4
 bindsym $mod+m workspace $ws5
-bindsym $mod+s workspace $ws6
+bindsym $mod+y workspace $ws6
 bindsym $mod+w workspace $ws7
 bindsym $mod+x workspace $ws8
 
 # Move active container to workspace
-bindsym $mod+Ctrl+b move container to workspace $ws1
-bindsym $mod+Ctrl+f move container to workspace $ws2
-bindsym $mod+Ctrl+t move container to workspace $ws3
-bindsym $mod+Ctrl+a move container to workspace $ws4
-bindsym $mod+Ctrl+m move container to workspace $ws5
-bindsym $mod+Ctrl+s move container to workspace $ws6
-bindsym $mod+Ctrl+w move container to workspace $ws7
-bindsym $mod+Ctrl+x move container to workspace $ws8
+bindsym $mod+Shift+b move container to workspace $ws1
+bindsym $mod+Shift+f move container to workspace $ws2
+bindsym $mod+Shift+t move container to workspace $ws3
+bindsym $mod+Shift+a move container to workspace $ws4
+bindsym $mod+Shift+m move container to workspace $ws5
+bindsym $mod+Shift+y move container to workspace $ws6
+bindsym $mod+Shift+w move container to workspace $ws7
+bindsym $mod+Shift+x move container to workspace $ws8
 
 # Move active container to workspace and focus
 #bindsym $mod+Shift+b move container to workspace $ws1; workspace $ws1
@@ -99,11 +99,8 @@ bindsym $mod+Shift+c exec --no-startup-id "pkill conky; start-my-conky; exec not
 bindsym $mod+n --release exec "killall dunst; dunst; exec notify-send 'restart dunst'"
 
 # i3 tiling
-bindsym $mod+Shift+Ctrl+f fullscreen toggle
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+Ctrl+q split toggle;exec notify-send 'toggled split'
-bindsym $mod+Ctrl+e layout default;exec notify-send 'default layout'
+bindsym $mod+Ctrl+f fullscreen toggle
+
 # Close container
 bindsym $mod+q kill
 
@@ -113,7 +110,6 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Right move right
 
-
 # Focus container
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -121,25 +117,25 @@ bindsym $mod+Left focus left
 bindsym $mod+Right focus right
 
 # Screen
-bindsym $mod+l exec --no-startup-id blurlock
 bindsym $mod+d exec --no-startup-id dmenu_recency
 
 # Keyboard
-bindsym $mod+Ctrl+Shift+d exec "i3-keyboard-layout set de; exec notify-send 'keyboard layout DE'"
-bindsym $mod+Ctrl+Shift+i exec "i3-keyboard-layout set it; exec notify-send 'keyboard layout IT'"
-bindsym $mod+Ctrl+Shift+t exec "i3-keyboard-layout cycle de it; exec notify-send 'keyboard toggled'"
+#bindsym $mod+Ctrl+Shift+d exec "i3-keyboard-layout set de; exec notify-send 'keyboard layout DE'"
+#bindsym $mod+Ctrl+Shift+i exec "i3-keyboard-layout set it; exec notify-send 'keyboard layout IT'"
+#bindsym $mod+Ctrl+Shift+t exec "i3-keyboard-layout cycle de it; exec notify-send 'keyboard toggled'"
 
 # Program
 #bindsym $mod+F  exec
-bindsym $mod+Shift+w exec chromium; exec notify-send 'opening browser'
-bindsym $mod+Shift+i exec intellij-idea-ultimate-edition; exec notify-send 'opening intellij'
-bindsym $mod+Shift+s exec spotify; exec notify-send 'opening spotify'
-bindsym $mod+e exec pcmanfm; exec notify-send 'file system manager'
+bindsym $mod+Ctrl+w exec chromium; exec notify-send 'opening browser'
+bindsym $mod+Ctrl+i exec intellij-idea-ultimate-edition; exec notify-send 'opening intellij'
+bindsym $mod+Ctrl+s exec spotify; exec notify-send 'opening spotify'
+bindsym $mod+Ctrl+e exec pcmanfm; exec notify-send 'file system manager'
 
 bindsym $mod+Return exec terminal
 
 # Set shut down, restart and locking features
 bindsym $mod+F4 mode "$mode_system"
+bindsym $mod+4 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -152,10 +148,27 @@ mode "$mode_system" {
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+4 mode "default"
+    bindsym $mod+F4 mode "default"
+}
+
+# Set split windows features
+bindsym $mod+s mode "$mode_split"
+set $mode_split (h)orizontal, (v)ertical, (t)oggle, (d)efault
+mode "$mode_split" {
+    bindsym h split h;exec notify-send 'tile horizontally'
+    bindsym v split v;exec notify-send 'tile vertically'
+    bindsym t split toggle;exec notify-send 'toggled split'
+    bindsym d layout default;exec notify-send 'default layout'
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+s mode "default"
 }
 
 # Set tiling windows features
-bindsym $mod+Shift+l mode "$mode_layout"
+bindsym $mod+l mode "$mode_layout"
 set $mode_layout (s)tacking, (t)abbed, (Shift+t)oggle, (f)loating, sti(k)y
 mode "$mode_layout" {
     bindsym s layout stacking;exec notify-send 'stacking layout'
@@ -169,10 +182,11 @@ mode "$mode_layout" {
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+l mode "default"
 }
 
 # Set monitor output and restart desktop
-bindsym $mod+Shift+o mode "$mode_output"
+bindsym $mod+o mode "$mode_output"
 set $mode_output (r)estart desktop, (t)oggle screen
 mode "$mode_output" {
     bindsym r exec --no-startup-id "pkill conky; start-my-conky; nitrogen --restore; exec notify-send 'restart desktop'"
@@ -181,10 +195,11 @@ mode "$mode_output" {
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+o mode "default"
 }
 
 # Set i3 reload, restart, increase and decrease font
-bindsym $mod+Shift+3 mode "$mode_i3"
+bindsym $mod+3 mode "$mode_i3"
 set $mode_i3 (r)estart, re(l)oad, (i)ncrease font, (d)ecrease font, (q)uit i3
 mode "$mode_i3" {
     # i3 config
@@ -197,10 +212,11 @@ mode "$mode_i3" {
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+3 mode "default"
 }
 
 # Set resize mode 
-bindsym $mod+Shift+r mode "$mode_resize"
+bindsym $mod+r mode "$mode_resize"
 set $mode_resize (l)eft, (r)ight, (u)p, (d)own 
 mode "$mode_resize" {
     # Resize container
@@ -212,11 +228,12 @@ mode "$mode_resize" {
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 # Open applications on specific workspaces
 # Workspace 1
-assign [class="jetbrains-idea"] $ws1
+#assign [class="jetbrains-idea"] $ws1
 
 # Workspace 6
 for_window [class="Spotify"] move to workspace $ws6
