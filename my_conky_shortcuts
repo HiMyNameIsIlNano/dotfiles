@@ -18,15 +18,14 @@ conky.config = {
 	use_xft = true,
 }
 conky.text = [[
-${color2}open browser - ${color}mod+Shift+w
-${color2}open IDE - ${color}mod+Shift+i
-${color2}open spotify - ${color}mod+Shift+s
-${color2}open file manager - ${color}mod+e
+${color2}open browser - ${color}mod+Ctrl+w
+${color2}open IDE - ${color}mod+Ctrl+i
+${color2}open spotify - ${color}mod+Ctrl+y
+${color2}open file manager - ${color}mod+Ctrl+e
 
-${color2}toggle split direction - ${color}mod+Shift+t
-${color2}split vertically [horizontally] - ${color}mod+v [mod+h]
-${color2}manage i3 - ${color}mod+Shift+3
+${color2}split layout - ${color}mod+s
+${color2}manage i3 - ${color}mod+3
 ${color2}power management - ${color}mod+F4
-${color2}toggle monitor - ${color}mod+Shift+o
-${color2}change windows layout - ${color}mod+Shift+l
+${color2}toggle monitor - ${color}mod+o
+${color2}change windows layout - ${color}mod+l
 ]]
