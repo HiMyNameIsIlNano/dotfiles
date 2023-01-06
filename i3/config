@@ -74,6 +74,9 @@ bindsym $mod+Shift+x move container to workspace $ws8
 #bindsym $mod+Shift+w move container to workspace $ws7; workspace $ws7
 #bindsym $mod+Shift+x move container to workspace $ws8; workspace $ws8
 
+# Lock Screen
+bindsym $mod+Shift+l exec --no-startup-id i3exit lock 
+
 # Move between workspaces
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
@@ -350,7 +353,7 @@ bar {
 }
 
 # hide/unhide i3status bar
-# bindsym $mod+Shift+h bar mode toggle
+bindsym $mod+Shift+h bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
