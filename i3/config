@@ -128,6 +128,7 @@ bindsym $mod+Ctrl+w exec chromium; exec notify-send 'opening browser'
 bindsym $mod+Ctrl+i exec intellij-idea-ultimate-edition; exec notify-send 'opening intellij'
 bindsym $mod+Ctrl+s exec spotify; exec notify-send 'opening spotify'
 bindsym $mod+Ctrl+e exec pcmanfm; exec notify-send 'file system manager'
+bindsym $mod+Ctrl+p exec keepassxc; exec notify-send 'oper password manager'
 
 bindsym $mod+Return exec terminal
 
@@ -283,6 +284,7 @@ exec --no-startup-id sleep 5; try-use-external-monitor; pkill conky; start-my-co
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
+exec --no-startup-id i3-keyboard-layout set it
 
 # Custom autostart application
 # exec --no-startup-id clipit
