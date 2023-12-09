@@ -1,7 +1,0 @@
-# Sourcing pureline
-if [ "$TERM" != "linux" ]; then
-    source ~/pureline/pureline ~/.pureline.conf
-fi
-
-[[ -s ~/Development/maven-bash-completion/bash_completion.bash ]] && source ~/Development/maven-bash-completion/bash_completion.bash
-[[ -s ~/.sdkman/bin/sdkman-init.sh ]] && source ~/.sdkman/bin/sdkman-init.sh

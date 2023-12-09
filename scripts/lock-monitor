@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+
+activate_monitor() {
+    local profile=$1
+
+    autorandr -l ${profile} 
+}
+
+use_notebook_monitor() {
+    activate_monitor notebook-monitor
+}
+
+office_monitor=DP-2-1
+if xrandr | grep "$office_monitor connected"; then
+    use_notebook_monitor
+fi
+
+sleep 2
+i3exit lock

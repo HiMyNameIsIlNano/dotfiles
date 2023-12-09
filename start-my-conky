@@ -1,6 +1,0 @@
-#!/bin/bash
-
-conky -c /usr/share/conky/my_conky_shortcuts &&
-conky -c /usr/share/conky/my_conky &&
-
-exit 0

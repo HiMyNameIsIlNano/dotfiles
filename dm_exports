@@ -1,0 +1,17 @@
+export WALLPAPER_DIR=~/.local/share/backgrounds/images/
+export WALLPAPER=${WALLPAPER_DIR}/wallpaper.png
+
+export TERM=xterm-256color
+
+export DEV_FOLDER=$HOME/development
+export TOOLS_FOLDER=$HOME/tools
+export MY_SECRETS=~/Documents/.secrets/
+export MY_DEV=${DEV_FOLDER}
+export DOTFILES=${MY_DEV}/dotfiles
+export TODOS_OUT_FOLDER=~/Documents/todos/
+export JAVA_HOME=~/.sdkman/candidates/java/current/bin
+export MVN_HOME=~/.sdkman/candidates/maven/current/bin
+export MVN_LOCAL_REPO=${TOOLS_FOLDER}/.m2
+
+export SDKMAN_DIR="${TOOLS_FOLDER}/sdkman"
+export JAVA_DIR="${SDKMAN_DIR}/candidates/java"

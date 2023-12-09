@@ -1,0 +1,362 @@
+### Aliases
+
+alias c='clear'
+alias v='vim'
+alias aa='alias'
+alias ls='ls -alh'
+alias ll='ls -alh'
+alias lll="ll"
+alias sudo="doas"
+alias llusb='sudo fdisk -l'
+alias eb='v ~/.bashrc'
+alias ea='v ~/.bashrc.d/dm_alias'
+alias ee='v ~/.bashrc.d/dm_exports'
+alias reload='source ~/.bashrc'
+alias le='printenv'
+alias update-all="sudo dnf update"
+alias ua="update-all"
+alias mixer="pavucontrol"
+alias lbin='cd ~/.local/bin'
+
+alias u="cd .."
+alias uu="cd ../.."
+alias uuu="cd ../../.."
+alias uuuu="cd ../../../.."
+
+# Docs
+alias docs-hibernate="open-in-browser https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html"
+alias docs-angular="open-in-browser https://angular.io/docs"
+alias docs-angular-styleguide="open-in-browser https://angular.io/guide/styleguide"
+alias docs-angular-material="open-in-browser https://material.angular.io/components/categories"
+alias docs-intellij="open-in-browser https://www.jetbrains.com/help/idea/discover-intellij-idea.html"
+alias docs-html="open-in-browser https://developer.mozilla.org/en-US/docs/Web/HTML"
+alias docs-js="open-in-browser https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+alias docs-ngrx="open-in-browser https://ngrx.io/guide/store"
+alias docs-lf="open-in-browser https://pkg.go.dev/github.com/gokcehan/lf#hdr-Configuration"
+alias docs-jsmethods="open-in-browser https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html"
+alias docs-ts="open-in-browser https://www.typescriptlang.org/docs/"
+alias docs-hcp="open-in-browser http://hcp.page.hanse-merkur.de/documentation"
+alias docs-k8s="open-in-browser https://kubernetes.io/docs/reference/kubectl/cheatsheet/"
+alias docs-gitpro="open-in-browser https://docs.gitlab.com/ee/api/api_resources.html"
+alias docs-java-styleguide="open-in-browser https://google.github.io/styleguide/javaguide.html"
+alias docs-dockercli="open-in-browser https://docs.docker.com/engine/reference/commandline/docker/"
+alias docs-dockercompose="open-in-browser https://docs.docker.com/compose/compose-file/compose-file-v3/"
+alias docs-ant-patternm="open-in-browser https://github.com/Mach-II/Mach-II-Framework/wiki/ANT-Style-Pattern-Matcher"
+alias docs-hh-oracle="open-in-browser https://wiki.hanse-merkur.de/display/IT/Oracle+-+Namenskonventionen"
+alias docs-spring="open-in-browser https://docs.spring.io/spring-framework/docs/current/reference/html/index.html"
+alias docs-spring-data="open-in-browser https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#reference"
+
+alias cddev="cd ${DEV_FOLDER}"
+alias dd="cddev"
+alias trash="cddev && cd trash"
+alias tt="cd $TOOLS_FOLDER"
+alias i3cfg="v ~/.config/i3/config"
+alias i3barcfg="v ~/.config/i3status/config"
+alias my-dev="cd ${DEV_FOLDER}/${USER}"
+alias mm="my-dev"
+alias ff="cd ${DOTFILES}"
+alias my-pwd="keepassxc --keyfile ${MY_SECRETS}/logins/mypwd.kdbx &"
+alias todos="cd ${TODOS_OUT_FOLDER}"
+alias notes="v ${DOTFILES}/notes"
+
+alias dfp="dotfiles-save"
+alias dfg="dotfiles-sync"
+alias dotfiles="cd ${DOTFILES}"
+alias gosdk="pcmanfm ~/.sdkman/candidates"
+alias tldr="my-dev && cd notes"
+
+### Git Alias
+alias gcl="git clone"
+alias ga="git add ."
+alias gc="git commit -m"
+alias gac="ga && gc"
+alias gp="git push"
+alias gg="git pull --rebase"
+alias gp="git push"
+gacp() {
+    local message="$@"
+    git add .
+    git commit -m "${message}"
+    git push
+}
+
+### General Functions
+open-in-browser() {
+	xdg-open "$@" &
+}
+
+fs-open() {
+	pcmanfm "$@" &
+} && export -f fs-open
+
+kill-proc-on-port() {
+	if [ "$#" -ne 1 ]; then 
+	    echo "At least one parameter must be provided to the function."
+            echo "${FUNCNAME[0]} 8080"
+	    return	
+	fi
+	
+	local port="$@"
+
+	PIDS=$(lsof -t -i:${port})
+	for pid in $PIDS
+	do
+		kill -9 $pid
+	done
+}
+
+extract(){
+    for arg in $@ ; do
+        if [ -f $arg ] ; then
+            case $arg in
+                *.tar.bz2)  mkdir -p ./$(basename "$arg" .tar.bz2) && tar xjf $arg --strip=1 -C ./$(basename "$arg" .tar.bz2) ;;
+                *.tar.gz)   mkdir -p ./$(basename "$arg" .tar.gz) && tar xzf $arg --strip=1 -C ./$(basename "$arg" .tar.gz);;
+                *.bz2)      bunzip2 $arg      ;;
+                *.xz)       mkdir -p ./$(basename "$arg" .tar.xz) && tar xf $arg --strip=1 -C ./$(basename "$arg" .tar.xz) ;;
+                *.gz)       gunzip $arg       ;;
+                *.tar)      mkdir -p ./$(basename "$arg" .tar) && tar xf $arg --strip=1 -C ./$(basename "$arg" .tar) ;;
+                *.tbz2)     mkdir -p ./$(basename "$arg" .tbz2) && tar xjf $arg --strip=1 -C ./$(basename "$arg" .tbz2) ;;
+                *.tgz)      mkdir -p ./$(basename "$arg" .tgz) && tar xzf $arg --strip=1 -C ./$(basename "$arg" .tgz) ;;
+                *.zip)      unzip $arg ;;
+                *)          echo "'$arg' cannot be extracted via extract()" ;;
+            esac
+        else
+            echo "'$arg' is not a valid file"
+        fi
+    done
+}
+
+info() {
+    local arg="$1"
+    if [ -f $arg ] ; then
+      case $arg in
+          *.tar.bz2|*.tar.gz|*.bz2|*.xz|*.gz|*.tar|*.tbz2|*.tgz|*.zip|*.jar)  vim $arg;;
+          *)        echo "info for '$arg' cannot be retrieved via info()" ;;
+      esac
+  fi
+}
+
+git-create-branch() {
+	if [ "$#" -ne 2 ]; then
+		echo "Two parameters must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} XXX 'A Description of the task'."
+		return
+	fi
+	
+	local ticket_id="$1"
+	local descrption="$2"
+	
+	local branch_name=${ticket_id}-$(echo ${descrption// /_})
+	
+	echo "Creating branch ${branch_name}"
+	git stash push -m "Stashed changes before creating ${branch_name}"
+	git checkout develop
+	git pull --rebase
+	git checkout -b ${branch_name}
+}
+
+todo-create() {
+	if [ "$#" -gt 2 ]; then
+		echo "Up to two parameter must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} [filename] [outdir]."
+		return
+	fi
+	
+	local file=$(date +'%Y-%m-%d').todo
+	local out_dir=${TODOS_OUT_FOLDER}
+	if [ "$#" -eq 2 ]; then
+		file="$1".todo
+		out_dir="$2"
+	elif [ "$#" -eq 1 ]; then
+		file="$1".todo
+	else
+		# If I am generating the todo file name with the default strategy, I would like them to be grouped by YYYYMM
+		local YYYYMM=$(date +'%Y-%m')
+		out_dir=${TODOS_OUT_FOLDER}/${YYYYMM}
+	fi
+	
+	mkdir -p ${out_dir}
+	cd ${out_dir}
+	if [ ! -f "${file}" ]; then
+		touch ${file}
+		printf ".todo\n.done" > "${file}"
+	fi
+}
+
+todo-edit() {
+	if [ "$#" -gt 1 ]; then
+		echo "Up to one parameter must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} [filename]."
+		return
+	fi
+
+	if [ ! -z $1 ]; then
+		todo-create "$1"
+		vim ${TODOS_OUT_FOLDER}/"$1".todo	
+	else
+		local file_name=$(date +'%Y-%m-%d')
+		local year_and_month_out_dir=$(date +'%Y-%m')
+		todo-create ${file_name} ${TODOS_OUT_FOLDER}/${year_and_month_out_dir}
+		vim ${TODOS_OUT_FOLDER}/${year_and_month_out_dir}/${file_name}.todo	
+	fi
+}
+
+note () {
+    echo "- $@" >> ${MY_DEV}/dotfiles/notes
+}
+
+dotfiles-sync() {
+	git-sync ${DOTFILES}
+	cd - >& /dev/null
+}
+
+dotfiles-save() {
+	local timestamp=$(date +'%Y-%m-%d')
+	
+	git-push-repo-with-message ${DOTFILES} "update dotfiles on ${timestamp}"
+	cd - >& /dev/null
+}
+
+git-sync() {
+	if [ "$#" -ne 1 ]; then
+		echo "One parameter must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} /path/to/folder."
+		return
+	fi
+	
+	local folder="$1"
+	cd ${folder}
+	
+	git pull --rebase
+}
+
+git-push-repo-with-message() {
+	if [ "$#" -ne 2 ]; then
+		echo "Two parameter must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} /path/to/folder 'a nice commit message'."
+		return
+	fi
+
+	local folder="$1"
+	local message="$2"
+	
+	cd ${folder}
+	
+	git add .
+	git commit -m "${message}"
+	
+	git pull --rebase
+	git push
+}
+
+checkout-file-from-repo() {
+	if [ "$#" -ne 2 ]; then
+		echo "Two parameters must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} filename git_repo_url."
+		return
+	fi
+    
+    local filename="$1"
+    local git_repo_path="$2"
+
+	my-dev
+    git clone -n ${git_repo_path} --depth 1 change-my-name
+	cd change-my-name
+    git checkout HEAD ${filename} 
+	
+    cd - >& /dev/null
+}
+
+checkout-repo-subfolder() {
+    if [ "$#" -ne 4 ]; then
+		echo "Four parameters must be provided to the function."
+		echo "Example: ${FUNCNAME[0]} git_repo_url folder_name checkout_dir branch."
+		return
+	fi
+
+    local REPOS="$1"
+    local CHECKOUT_DIR="$2"
+    local DIR="$3"
+    local BRANCH="$4"
+
+    mkdir -p $DIR
+    if [ -d "$DIR" ]; then
+      cd $DIR
+      git init
+      git remote add -f origin $REPOS
+      git fetch --all
+      git config core.sparseCheckout true
+      if [ -f .git/info/sparse-checkout ]; then
+        rm .git/info/sparse-checkout
+      fi
+      
+      echo $CHECKOUT_DIR >> .git/info/sparse-checkout
+      git checkout $BRANCH
+      git merge --ff-only origin/$BRANCH
+    fi
+}
+
+install_icon_nord_theme() {
+	# Install Icon Theme
+	cd ${MY_DEV}/Papirus-Nord
+	./papirus-folders -l --theme Papirus-Dark -C nordic
+	cd - >& /dev/null
+} && export -f install_icon_nord_theme
+
+configure_lightdm() {
+	cd ${DOTFILES}
+    
+    if [ "$#" -ne 1 ]; then
+        echo "At least one parameter must be provided to the function."
+        echo "${FUNCNAME[0]} /path/to/wallpaper"
+        return  
+    fi 
+
+    export WALLPAPER="${1}"
+    envsubst < lightdm-gtk-greeter.conf.template > ./lightdm-gtk-greeter.conf
+   
+    cd /etc/lightdm
+    if [ -f  lightdm-gtk-greeter.conf ]; then
+        sudo mv lightdm-gtk-greeter.conf lightdm-gtk-greeter.conf.bak
+    fi
+    sudo mv ${DOTFILES}/lightdm-gtk-greeter.conf .
+
+	cd ~
+} && export -f configure_lightdm
+
+link-mvn-settings() {
+    if [ "$#" -ne 1 ]; then
+        echo "Exactly one parameter must be provided to the function."
+        echo "${FUNCNAME[0]} 3.8.6"
+        return
+    fi
+
+    local version=$1
+	local target="${MVN_LOCAL_REPO}/settings.xml"
+	local link_name="${SDKMAN_CANDIDATES_DIR}/maven/${version}/conf/settings.xml"
+
+	if [[ -L "${link_name}" ]]; then
+		rm "${link_name}";
+	elif [[ -f "${link_name}" ]]; then
+		mv "${link_name}" "${link_name}.bak";
+	fi
+
+	ln -s ${target} ${link_name}
+} && export -f link-mvn-settings
+
+function export-os-name() {
+    case $OSTYPE in
+      linux*)
+        export OS_NAME=linux
+        ;;
+      darwin*)
+        export OS_NAME=osx
+        ;;
+      msys*|mingw*)
+        export OS_NAME=windows
+        ;;
+      *)
+        export OS_NAME=notset
+        ;;
+    esac
+} && export -f export-os-name
