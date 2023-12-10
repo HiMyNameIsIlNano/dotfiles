@@ -22,7 +22,7 @@ general {
 
 # order += "ipv6"
 order += "path_exists docker"
-#order += "fedora_updates"
+order += "apt_updates"
 #order += "external_script _dpms_"
 #order += "external_script _kbd_"
 order += "volume master"

@@ -1,0 +1,22 @@
+#!/bn/sh
+
+cd ${0%/*}
+
+# Source files
+. ./dm_exports
+. ./dm_alias
+
+[ ! -d ~/.config/i3 ] && mkdir -p ~/.config/i3
+[ ! -d ~/.config/i3status ] && mkdir -p ~/.config/i3status
+
+for script in ./scripts/*; do
+    ln -s ${DOTFILES}/scripts/$(basename ${script}) ~/.local/bin/$(basename ${script})
+done
+
+ln -s ${DOTFILES}/i3/config ~/.config/i3/config
+ln -s ${DOTFILES}/i3status/config ~/.config/i3status/config
+
+checkout-repo-subfolder https://github.com/ultrabug/py3status.git modules ~/.config/i3 master
+mv ~/.config/i3/py3status/modules/* ~/.config/i3/py3status
+rm -r ~/.config/i3/py3status/modules
+rm -rf ~/.config/i3/py3status/.git

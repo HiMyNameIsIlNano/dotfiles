@@ -4,11 +4,10 @@ cd ${0%/*}
 
 # Source files
 . ./dm_exports
+. ./dm_alias
 
 [ ! -d ~/Pictures/screenshot ] && mkdir -p ~/Pictures/screenshot
 [ ! -d ~/.screenlayout ] && mkdir -p ~/.screenlayout
-[ ! -d ~/.config/i3 ] && mkdir -p ~/.config/i3
-[ ! -d ~/.config/i3status ] && mkdir -p ~/.config/i3status
 [ ! -d ~/.bashrc.d ] && mkdir -p ~/.bashrc.d
 [ ! -d $DEV_FOLDER ] && mkdir -p $DEV_FOLDER
 [ ! -d $TOOLS_FOLDER ] && mkdir -p $TOOLS_FOLDER
@@ -24,19 +23,12 @@ done
 ln -s ${DOTFILES}/bashrc ~/.bashrc
 ln -s ${DOTFILES}/vimrc ~/.vimrc
 ln -s ${DOTFILES}/pureline.conf ~/.pureline.conf
-ln -s ${DOTFILES}/gtkrc-2.0 ~/.gtkrc-2.0
-ln -s ${DOTFILES}/config/settings.ini ~/.config/gtk-3.0/settings.ini
-ln -s ${DOTFILES}/fehbg ~/.fehbg
-
 ln -s ${DOTFILES}/dm_alias ~/.bashrc.d/dm_alias
 ln -s ${DOTFILES}/dm_exports ~/.bashrc.d/dm_exports
-ln -s ${DOTFILES}/i3/config ~/.config/i3/config
-ln -s ${DOTFILES}/i3status/config ~/.config/i3status/config
-ln -s ${DOTFILES}/Xresources ~/.Xresources
 
-ln -s ${DOTFILES}/wallpaper/wallpaper.png ${WALLPAPER_DIR}/wallpaper.png
-feh --bg-fill ${WALLPAPER}
-
-doas echo "QT_QPA_PLATFORMTHEME=gtk2" >> /etc/environment
-
-
+if [ $OSTYPE == "linux" ]; then
+  ln -s ${DOTFILES}/gtkrc-2.0 ~/.gtkrc-2.0
+  ln -s ${DOTFILES}/config/settings.ini ~/.config/gtk-3.0/settings.ini
+  ln -s ${DOTFILES}/fehbg ~/.fehbg
+  ln -s ${DOTFILES}/Xresources ~/.Xresources
+fi

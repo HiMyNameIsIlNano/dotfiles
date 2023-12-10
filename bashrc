@@ -12,12 +12,11 @@ source-plugin() {
 	[[ $(command -v "${command_to_source}") ]] && source <(${command_to_source} ${plugin_to_source})
 }
 
-[ ! -d ~/.bashrc.d ] && mkdir -p ~/.bashrc.d
 [ -f ~/.Xresources ] && xrdb ~/.Xresources
 
 # User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/dm_exports ~/.bashrc.d/dm_alias; do
+if [ -d ${RC_DIR} ]; then
+    for rc in ${RC_DIR}/dm_exports ${RC_DIR}/dm_alias; do
 		if [ -f "$rc" ]; then
             . "$rc"
 		fi
@@ -39,4 +38,4 @@ source-item "${SDKMAN_DIR}/bin/sdkman-init.sh"
 source-plugin kubectl 'completion bash'
 source-plugin ng 'completion script'
 
-export IDEA_JDK="$SDKMAN_CANDIDATES_DIR/java/current"
+#export IDEA_JDK="$SDKMAN_CANDIDATES_DIR/java/current"

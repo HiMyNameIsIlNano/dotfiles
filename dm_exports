@@ -3,6 +3,7 @@ export WALLPAPER=${WALLPAPER_DIR}/wallpaper.png
 
 export TERM=xterm-256color
 
+export RC_DIR=$HOME~/.bashrc.d
 export DEV_FOLDER=$HOME/development
 export TOOLS_FOLDER=$HOME/tools
 export MY_SECRETS=~/Documents/.secrets/

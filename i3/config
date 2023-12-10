@@ -360,6 +360,3 @@ exec --no-startup-id keepassxc
 exec --no-startup-id intellij-idea
 exec --no-startup-id firefox
 exec --no-startup-id i3-sensible-terminal
-
-
-

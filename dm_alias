@@ -301,7 +301,7 @@ checkout-repo-subfolder() {
       git checkout $BRANCH
       git merge --ff-only origin/$BRANCH
     fi
-}
+} && export -f checkout-repo-subfolder
 
 install_icon_nord_theme() {
 	# Install Icon Theme
