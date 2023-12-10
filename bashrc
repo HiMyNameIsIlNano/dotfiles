@@ -15,8 +15,8 @@ source-plugin() {
 [ -f ~/.Xresources ] && xrdb ~/.Xresources
 
 # User specific aliases and functions
-if [ -d ${RC_DIR} ]; then
-    for rc in ${RC_DIR}/dm_exports ${RC_DIR}/dm_alias; do
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/dm_exports ~/.bashrc.d/dm_alias; do
 		if [ -f "$rc" ]; then
             . "$rc"
 		fi
