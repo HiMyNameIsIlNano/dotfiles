@@ -13,7 +13,6 @@ alias ea='v ~/.bashrc.d/dm_alias'
 alias ee='v ~/.bashrc.d/dm_exports'
 alias reload='source ~/.bashrc'
 alias le='printenv'
-alias update-all="sudo dnf update"
 alias ua="update-all"
 alias mixer="pavucontrol"
 alias lbin='cd ~/.local/bin'
@@ -88,6 +87,14 @@ open-in-browser() {
 fs-open() {
 	pcmanfm "$@" &
 } && export -f fs-open
+
+update-all() {
+    if [ $(command -v dnf) ]; then
+        sudo dnf update
+    elif [ $(command -v apt) ]; then
+        sudo apt update && sudo apt upgrade
+    fi
+} && export -f update-all
 
 kill-proc-on-port() {
 	if [ "$#" -ne 1 ]; then 
