@@ -26,7 +26,7 @@ ln -s ${DOTFILES}/pureline.conf ~/.pureline.conf
 ln -s ${DOTFILES}/dm_alias ~/.bashrc.d/dm_alias
 ln -s ${DOTFILES}/dm_exports ~/.bashrc.d/dm_exports
 
-if [ $OSTYPE == "linux" ]; then
+if [ "$OSTYPE" == 'linux' ]; then
   ln -s ${DOTFILES}/gtkrc-2.0 ~/.gtkrc-2.0
   ln -s ${DOTFILES}/config/settings.ini ~/.config/gtk-3.0/settings.ini
   ln -s ${DOTFILES}/fehbg ~/.fehbg
