@@ -351,6 +351,7 @@ client.background       $term_background
 # Default Application Workspaces
 for_window [class="(?i)keepassxc"] move container to workspace $passwd
 for_window [class="(?i)jetbrains-idea"] move container to workspace $dev
+for_window [class="(?i)firefox-esr"] move container to workspace $web
 
 # Default Startup Application
 exec --no-startup-id ~/.fehbg

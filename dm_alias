@@ -1,6 +1,7 @@
 ### Aliases
 
-alias c='clear'
+alias cc='clear'
+alias xx='exit'
 alias v='vim'
 alias aa='alias'
 alias ls='ls -alh'
