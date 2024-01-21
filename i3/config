@@ -270,12 +270,11 @@ mode "$mode_screenshot" {
 
 # Set monitor output
 bindsym $mod+o mode "$mode_output"
-set $mode_output (n)otebook, (h)ome only, (b)oth home, (t)oggle screen
+set $mode_output (n)otebook, (e)xternal only, (a)ll
 mode "$mode_output" {
         bindsym n exec --no-startup-id activate-specific-monitor notebook-monitor
-        bindsym h exec --no-startup-id activate-specific-monitor external-home-monitor
-        bindsym b exec --no-startup-id activate-specific-monitor both-home-monitors
-        bindsym t exec --no-startup-id toggle-select-monitor
+        bindsym e exec --no-startup-id activate-specific-monitor external-monitor
+        bindsym a exec --no-startup-id activate-specific-monitor all-monitors
 
         # back to normal: Enter or Escape or $mod+o
         bindsym Return mode "default"
