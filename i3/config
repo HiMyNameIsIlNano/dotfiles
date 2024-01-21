@@ -108,6 +108,10 @@ bindsym $mod+Escape exec --no-startup-id "dmenu_run -i -nf '$term_color15' -nb '
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
 
+# Move between monitors 
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+
 # change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
